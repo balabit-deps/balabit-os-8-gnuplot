@@ -1,0 +1,33 @@
+Description: removes picins latex include
+Author: Anton Gladky <gladk@debian.org>
+Last-Update: 2015-06-16
+
+Index: gnuplot-5.2.8/docs/Makefile.am
+===================================================================
+--- gnuplot-5.2.8.orig/docs/Makefile.am
++++ gnuplot-5.2.8/docs/Makefile.am
+@@ -187,7 +187,6 @@ gnuplot.pdf: figures.tex pdf_figures $(s
+ 	  touch figures.idx ; \
+ 	  rm -f pdffigures.tex ; \
+ 	  ( echo "\usepackage{graphicx}" > pdffigures.tex ; \
+-	    echo "\usepackage{picins}" >> pdffigures.tex ; \
+ 	  ) ; \
+ 	  TEXINPUTS=.:$(srcdir):$(top_srcdir):${TEXINPUTS}: $(PDFLATEX) $< ; \
+ 	  TEXINPUTS=.:$(srcdir):$(top_srcdir):${TEXINPUTS}: $(PDFLATEX) $< ; \
+Index: gnuplot-5.2.8/docs/doc2tex.c
+===================================================================
+--- gnuplot-5.2.8.orig/docs/doc2tex.c
++++ gnuplot-5.2.8/docs/doc2tex.c
+@@ -168,12 +168,6 @@ process_line( char *line, FILE *b)
+ 	    break;
+ 
+     case 'F':			/* embedded figure */
+-	    if (figures) {
+-		line[strlen(line)-1]=NUL;
+-		(void) fputs("\\parpic[r][rt]{\\includegraphics[width=3in,keepaspectratio]{",b);
+-		fputs(line+1, b);
+-		(void) fputs("}}\n",b);
+-	    }
+ 	    break;
+ 
+     case '@':{			/* start/end table */

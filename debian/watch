@@ -1,0 +1,3 @@
+version=3
+opts=repacksuffix=+dfsg1,dversionmangle=s/\+dfsg\d*$// \
+https://sf.net/gnuplot/gnuplot-([\d.]+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))

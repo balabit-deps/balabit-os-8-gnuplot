@@ -1,0 +1,58 @@
+Description: temporarily disable demo plugin
+ this patch should be removed, when a new 
+ version appears, where already no binaries
+ in demo/plugin folder.
+Author: Anton Gladky <gladk@debian.org>
+Last-Update: 2015-06-16
+
+Index: gnuplot-5.2.8/demo/Makefile.in
+===================================================================
+--- gnuplot-5.2.8.orig/demo/Makefile.in
++++ gnuplot-5.2.8/demo/Makefile.in
+@@ -327,7 +327,6 @@ epslatex.ps epslatex.tex random.tmp stri
+ 
+ BINARY_FILES = binary1 binary2 binary3
+ SUBDIRS = $(PLUGIN_DIR)
+-DIST_SUBDIRS = plugin
+ DEMO = all.dem
+ GNUPLOT = gnuplot
+ EXTRA_DIST = Makefile.am.in lena-keypoints.bin scatter2.bin sine.bin \
+@@ -372,7 +371,6 @@ hexa.fnc line.fnc reflect.fnc gen-random
+ bldg.png GM1_bonds.r3d blutux.rgb lena.rgb sound.par sound2.par start.par \
+ gnuplot.rot gnu-valley random-points gpdemos.tcl html 
+ 
+-@BUILD_PLUGIN_TRUE@PLUGIN_DIR = plugin
+ all: all-recursive
+ 
+ .SUFFIXES:
+Index: gnuplot-5.2.8/demo/Makefile.am
+===================================================================
+--- gnuplot-5.2.8.orig/demo/Makefile.am
++++ gnuplot-5.2.8/demo/Makefile.am
+@@ -9,7 +9,6 @@ epslatex.ps epslatex.tex random.tmp stri
+ BINARY_FILES = binary1 binary2 binary3
+ 
+ SUBDIRS = $(PLUGIN_DIR)
+-DIST_SUBDIRS = plugin
+ 
+ DEMO = all.dem
+ 
+@@ -126,6 +125,3 @@ Makefile.am: Makefile.am.in
+ 	chmod og-w $@t
+ 	mv $@t $@
+ 
+-if BUILD_PLUGIN
+-PLUGIN_DIR = plugin
+-endif
+Index: gnuplot-5.2.8/demo/Makefile.am.in
+===================================================================
+--- gnuplot-5.2.8.orig/demo/Makefile.am.in
++++ gnuplot-5.2.8/demo/Makefile.am.in
+@@ -9,7 +9,6 @@ epslatex.ps epslatex.tex random.tmp stri
+ BINARY_FILES = binary1 binary2 binary3
+ 
+ SUBDIRS = $(PLUGIN_DIR)
+-DIST_SUBDIRS = plugin
+ 
+ DEMO = all.dem
+ 
